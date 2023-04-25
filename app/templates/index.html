@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>nerdthework.com</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='assets/favicon16.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='assets/favicon32.png') }}">
+    <link rel="icon" type="image/png" sizes="48x48" href="{{ url_for('static', filename='assets/favicon48.png') }}">
+    
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class="header">
+      <h1><a href="https://hatethework.com">hatethework.com</a></h1>
+      <div class="topnav" id="myTopnav">
+        <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">
+          <i class="fa fa-bars menu-icon"></i>
+        </a>
+      </div>
+    </div>
+
+    <div id="filters" style="display:none;">
+      <span class="close-btn" onclick="toggleMenu()">&times;</span>
+      <form id="filters-form-mobile" onsubmit="event.preventDefault()">
+      <label for="lion-filter">Lion:</label>
+        <select id="lion-filter_mobile" name="lion">
+          <option value="">All</option>
+          {% for lion in lions %}
+          <option value="{{ lion }}" {% if lion == lion_filter %}selected{% endif %}>{{ lion }}</option>
+          {% endfor %}
+        </select>
+      <label for="section-filter">Section:</label>
+        <select id="section-filter_mobile" name="section">
+          <option value="">All</option>
+          {% for section in sections %}
+          <option value="{{ section }}" {% if section == section_filter %}selected{% endif %}>{{ section }}</option>
+          {% endfor %}
+        </select>
+      <label for="category-filter">Category:</label>
+        <select id="category-filter_mobile" name="category">
+          <option value="">All</option>
+          {% for category in categories %}
+          <option value="{{ category }}" {% if category == category_filter %}selected{% endif %}>{{ category }}</option>
+          {% endfor %}
+        </select>
+      <label for="year-filter">Year:</label>
+        <select id="year-filter_mobile" name="year">
+          <option value="">All</option>
+          {% for year in range(2022, 2016, -1) %}
+          <option value="{{ year }}" {% if year == year_filter %}selected{% endif %}>{{ year }}</option>
+          {% endfor %}
+        </select>
+      <label for="award-filter">Award:</label>
+        <select id="award-filter_mobile" name="award">
+          <option value="">All</option>
+          {% for award in awards %}
+          <option value="{{ award }}">{{ award }}</option>
+          {% endfor %}
+        </select>
+        <input type="submit" value="Filter" onclick="submitTable('mobile');toggleMenu();"/>
+        <label for="search-input">Search:</label>
+        <input type="text" id="search-input_mobile" placeholder="Search">
+        <button onclick="searchData('mobile');toggleMenu();">Search</button>
+      </form>
+    </div>
+
+    <div class="filters-container">
+      <form id="filters-form-desktop" onsubmit="event.preventDefault()">
+        <label for="lion-filter">Lion:</label>
+        <select id="lion-filter_desktop" name="lion">
+          <option value="">All</option>
+          {% for lion in lions %}
+          <option value="{{ lion }}" {% if lion == lion_filter %}selected{% endif %}>{{ lion }}</option>
+          {% endfor %}
+        </select>
+      <label for="section-filter">Section:</label>
+        <select id="section-filter_desktop" name="section">
+          <option value="">All</option>
+          {% for section in sections %}
+          <option value="{{ section }}" {% if section == section_filter %}selected{% endif %}>{{ section }}</option>
+          {% endfor %}
+        </select>
+      <label for="category-filter">Category:</label>
+        <select id="category-filter_desktop" name="category">
+          <option value="">All</option>
+          {% for category in categories %}
+          <option value="{{ category }}" {% if category == category_filter %}selected{% endif %}>{{ category }}</option>
+          {% endfor %}
+        </select>
+      <label for="year-filter">Year:</label>
+        <select id="year-filter_desktop" name="year">
+          <option value="">All</option>
+          {% for year in range(2022, 2016, -1) %}
+          <option value="{{ year }}" {% if year == year_filter %}selected{% endif %}>{{ year }}</option>
+          {% endfor %}
+        </select>
+      <label for="award-filter">Award:</label>
+        <select id="award-filter_desktop" name="award">
+          <option value="">All</option>
+          {% for award in awards %}
+          <option value="{{ award }}">{{ award }}</option>
+          {% endfor %}
+        </select>
+        <div class="filter-section">
+          <button id="apply-filter" class="apply-filter-btn" onclick="submitTable('desktop');toggleMenu();">Filter</button>
+        </div>
+        <label for="search-input">Search:</label>
+        <input type="text" id="search-input_desktop" placeholder="Search">
+        <button onclick="searchData('desktop');toggleMenu();">Search</button>
+      </form>
+    </div>
+
+      <div class="container">
+        <table>
+            <thead>
+              <tr>
+                <th>Year</th>
+                <th>Brand</th>
+                <th>Entrant Company</th>
+                <th>Title</th>
+                <th>Lion</th>
+                <th>Category</th>
+                <th>Section</th>
+                <th>Award</th>
+              </tr>
+            </thead>
+              <tbody id="table-body">
+                <!-- Table content will be added using JavaScript -->
+              </tbody>
+            </table>
+        </div>
+      </body>
+
+        <script>
+          function toggleMenu() {
+            var filters = document.getElementById("filters");
+            if (filters.style.display === "none") {
+              filters.style.display = "block";
+            } else {
+              filters.style.display = "none";
+            }
+            var topnav = document.getElementById("myTopnav");
+            if (topnav.className === "topnav") {
+              topnav.className += " responsive";
+            } else {
+              topnav.className = "topnav";
+            }
+          }
+        </script>
+    </html>
