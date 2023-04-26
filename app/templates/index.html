@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>nerdthework.com</title>
+    <title>lovetheworkmoremore.com</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='assets/favicon16.png') }}">
@@ -16,105 +16,115 @@
   </head>
   <body>
     <div class="header">
-      <div class="topnav" id="myTopnav">
-        <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">
-          <i class="fa fa-bars menu-icon"></i>
-        </a>
+      <div class="logo-container">
+        <img src="{{ url_for('static', filename='assets/LTWMM-LOGO_980.png') }}" alt="Logo">
+      </div>
+      <div class="filters-and-search">
+        <div class="filters-container">
+
+          <div id="filters" style="display:none;">
+            <span class="close-btn" onclick="toggleMenu()">&times;</span>
+            <form id="filters-form-mobile" onsubmit="event.preventDefault()">
+            <label for="lion-filter">Lion:</label>
+              <select id="lion-filter_mobile" name="lion">
+                <option value="">All</option>
+                {% for lion in lions %}
+                <option value="{{ lion }}" {% if lion == lion_filter %}selected{% endif %}>{{ lion }}</option>
+                {% endfor %}
+              </select>
+            <label for="section-filter">Section:</label>
+              <select id="section-filter_mobile" name="section">
+                <option value="">All</option>
+                {% for section in sections %}
+                <option value="{{ section }}" {% if section == section_filter %}selected{% endif %}>{{ section }}</option>
+                {% endfor %}
+              </select>
+            <label for="category-filter">Category:</label>
+              <select id="category-filter_mobile" name="category">
+                <option value="">All</option>
+                {% for category in categories %}
+                <option value="{{ category }}" {% if category == category_filter %}selected{% endif %}>{{ category }}</option>
+                {% endfor %}
+              </select>
+            <label for="year-filter">Year:</label>
+              <select id="year-filter_mobile" name="year">
+                <option value="">All</option>
+                {% for year in range(2022, 2016, -1) %}
+                <option value="{{ year }}" {% if year == year_filter %}selected{% endif %}>{{ year }}</option>
+                {% endfor %}
+              </select>
+            <label for="award-filter">Award:</label>
+              <select id="award-filter_mobile" name="award">
+                <option value="">All</option>
+                {% for award in awards %}
+                <option value="{{ award }}">{{ award }}</option>
+                {% endfor %}
+              </select>
+              <input type="submit" value="Filter" onclick="submitTable('mobile');toggleMenu();"/>
+              <label for="search-input">Search:</label>
+              <input type="text" id="search-input_mobile" placeholder="Search">
+              <button onclick="searchData('mobile');toggleMenu();">Search</button>
+            </form>
+          </div>
+
+          <form id="filters-form-desktop" onsubmit="event.preventDefault()">
+            <div class="first-row">
+              <label for="lion-filter">Lion:</label>
+              <select id="lion-filter_desktop" name="lion">
+                <option value="">All</option>
+                {% for lion in lions %}
+                <option value="{{ lion }}" {% if lion == lion_filter %}selected{% endif %}>{{ lion }}</option>
+                {% endfor %}
+              </select>
+              <label for="section-filter">Section:</label>
+              <select id="section-filter_desktop" name="section">
+                <option value="">All</option>
+                {% for section in sections %}
+                <option value="{{ section }}" {% if section == section_filter %}selected{% endif %}>{{ section }}</option>
+                {% endfor %}
+              </select>
+              <label for="category-filter">Category:</label>
+              <select id="category-filter_desktop" name="category">
+                <option value="">All</option>
+                {% for category in categories %}
+                <option value="{{ category }}" {% if category == category_filter %}selected{% endif %}>{{ category }}</option>
+                {% endfor %}
+              </select>
+            </div><br>
+            <div class="second-row">
+              <label for="year-filter">Year:</label>
+              <select id="year-filter_desktop" name="year">
+                <option value="">All</option>
+                {% for year in range(2022, 2016, -1) %}
+                <option value="{{ year }}" {% if year == year_filter %}selected{% endif %}>{{ year }}</option>
+                {% endfor %}
+              </select>
+              <label for="award-filter">Award:</label>
+              <select id="award-filter_desktop" name="award">
+                <option value="">All</option>
+                {% for award in awards %}
+                <option value="{{ award }}">{{ award }}</option>
+                {% endfor %}
+              </select>
+              <div class="filter-section">
+                <button id="apply-filter" class="apply-filter-btn" onclick="submitTable('desktop')">Filter</button>
+              </div>
+            </div>
+          </form>          
+
+        <div class="search-container">
+          <form>
+            <label for="search-input">Search:</label>
+            <input type="text" id="search-input_desktop" placeholder="Search">
+            <button onclick="searchData('desktop');">Search</button>
+          </form>
+        </div>
       </div>
     </div>
+  </div>
+  
 
-    <div id="filters" style="display:none;">
-      <span class="close-btn" onclick="toggleMenu()">&times;</span>
-      <form id="filters-form-mobile" onsubmit="event.preventDefault()">
-      <label for="lion-filter">Lion:</label>
-        <select id="lion-filter_mobile" name="lion">
-          <option value="">All</option>
-          {% for lion in lions %}
-          <option value="{{ lion }}" {% if lion == lion_filter %}selected{% endif %}>{{ lion }}</option>
-          {% endfor %}
-        </select>
-      <label for="section-filter">Section:</label>
-        <select id="section-filter_mobile" name="section">
-          <option value="">All</option>
-          {% for section in sections %}
-          <option value="{{ section }}" {% if section == section_filter %}selected{% endif %}>{{ section }}</option>
-          {% endfor %}
-        </select>
-      <label for="category-filter">Category:</label>
-        <select id="category-filter_mobile" name="category">
-          <option value="">All</option>
-          {% for category in categories %}
-          <option value="{{ category }}" {% if category == category_filter %}selected{% endif %}>{{ category }}</option>
-          {% endfor %}
-        </select>
-      <label for="year-filter">Year:</label>
-        <select id="year-filter_mobile" name="year">
-          <option value="">All</option>
-          {% for year in range(2022, 2016, -1) %}
-          <option value="{{ year }}" {% if year == year_filter %}selected{% endif %}>{{ year }}</option>
-          {% endfor %}
-        </select>
-      <label for="award-filter">Award:</label>
-        <select id="award-filter_mobile" name="award">
-          <option value="">All</option>
-          {% for award in awards %}
-          <option value="{{ award }}">{{ award }}</option>
-          {% endfor %}
-        </select>
-        <input type="submit" value="Filter" onclick="submitTable('mobile');toggleMenu();"/>
-        <label for="search-input">Search:</label>
-        <input type="text" id="search-input_mobile" placeholder="Search">
-        <button onclick="searchData('mobile');toggleMenu();">Search</button>
-      </form>
-    </div>
-
-    <div class="filters-container">
-      <form id="filters-form-desktop" onsubmit="event.preventDefault()">
-        <label for="lion-filter">Lion:</label>
-        <select id="lion-filter_desktop" name="lion">
-          <option value="">All</option>
-          {% for lion in lions %}
-          <option value="{{ lion }}" {% if lion == lion_filter %}selected{% endif %}>{{ lion }}</option>
-          {% endfor %}
-        </select>
-      <label for="section-filter">Section:</label>
-        <select id="section-filter_desktop" name="section">
-          <option value="">All</option>
-          {% for section in sections %}
-          <option value="{{ section }}" {% if section == section_filter %}selected{% endif %}>{{ section }}</option>
-          {% endfor %}
-        </select>
-      <label for="category-filter">Category:</label>
-        <select id="category-filter_desktop" name="category">
-          <option value="">All</option>
-          {% for category in categories %}
-          <option value="{{ category }}" {% if category == category_filter %}selected{% endif %}>{{ category }}</option>
-          {% endfor %}
-        </select>
-      <label for="year-filter">Year:</label>
-        <select id="year-filter_desktop" name="year">
-          <option value="">All</option>
-          {% for year in range(2022, 2016, -1) %}
-          <option value="{{ year }}" {% if year == year_filter %}selected{% endif %}>{{ year }}</option>
-          {% endfor %}
-        </select>
-      <label for="award-filter">Award:</label>
-        <select id="award-filter_desktop" name="award">
-          <option value="">All</option>
-          {% for award in awards %}
-          <option value="{{ award }}">{{ award }}</option>
-          {% endfor %}
-        </select>
-        <div class="filter-section">
-          <button id="apply-filter" class="apply-filter-btn" onclick="submitTable('desktop');toggleMenu();">Filter</button>
-        </div>
-        <label for="search-input">Search:</label>
-        <input type="text" id="search-input_desktop" placeholder="Search">
-        <button onclick="searchData('desktop');toggleMenu();">Search</button>
-      </form>
-    </div>
-
-      <div class="container">
+      <div class="table-container">
         <table>
             <thead>
               <tr>
