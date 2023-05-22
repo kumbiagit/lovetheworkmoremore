@@ -14,7 +14,6 @@ body {
   line-height: 1.5;
 }
 
-
 .table-container {
   width: 90%;
   margin: 0 auto;
@@ -259,7 +258,7 @@ table td {
     flex-direction: column;
   }
   .first-row{
-    flex-direction: column;
+    //flex-direction: column;
     align-items: start;
     justify-content: start;
   }
@@ -411,16 +410,4 @@ table td {
   #filters-form-mobile {
     display: none;
   }
-}
-
-.gold-color {
-  color: yellow;
-}
-
-.silver-color {
-  color: silver;
-}
-
-.bronze-color {
-  color: orange;
 }
