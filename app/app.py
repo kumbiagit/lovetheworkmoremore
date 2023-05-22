@@ -96,11 +96,23 @@ def get_categories_for_section(section):
     categories = Hatethework.query.with_entities(Hatethework.category).filter_by(section=section).distinct().all()
     return [cat[0].strip() for cat in categories]  # Add .strip() here
 
+def get_categories_for_lion_and_section(lion, section):
+    if lion and section:
+        categories = Hatethework.query.with_entities(Hatethework.category).filter_by(lion=lion, section=section).distinct().all()
+    elif lion:
+        categories = Hatethework.query.with_entities(Hatethework.category).filter_by(lion=lion).distinct().all()
+    elif section:
+        categories = Hatethework.query.with_entities(Hatethework.category).filter_by(section=section).distinct().all()
+    else:
+        categories = []
+
+    return [cat[0].strip() for cat in categories if cat[0] is not None]
+
 @app.route('/get-categories', methods=['GET'])
 def get_categories():
+    lion = request.args.get('lion', '')
     section = request.args.get('section', '')
-    print(f"Received section: {section}")  # Add this line
-    categories = get_categories_for_section(section)
+    categories = get_categories_for_lion_and_section(lion, section)
     if categories:
         return jsonify([category for category in categories if category is not None])
     return jsonify([])
