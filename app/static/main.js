@@ -1,6 +1,6 @@
 function updateTable(formType) {
+  const lion = document.getElementById(`lion-filter_${formType}`).value; // Define the lion variable here
   const searchInput = document.getElementById(`search-input_${formType}`).value;
-  const lion = document.getElementById(`lion-filter_${formType}`).value;
   const section = document.getElementById(`section-filter_${formType}`).value;
   const category = document.getElementById(`category-filter_${formType}`).value;
   const year = document.getElementById(`year-filter_${formType}`).value;
@@ -41,6 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var category = urlParams.get("category");
   var year = urlParams.get("year");
   var award = urlParams.get("award");
+});
 
   ["desktop", "mobile"].forEach((formType) => {
     setFilterValues("lion-filter", lion, formType);
@@ -52,24 +53,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
   document.getElementById("filters-form-desktop").addEventListener("submit", function (event) {
     event.preventDefault();
-    submitTable("desktop");
+    submitTable("desktop", event);
   });
   
   document.getElementById("filters-form-mobile").addEventListener("submit", function (event) {
     event.preventDefault();
-    submitTable("mobile");
+    submitTable("mobile", event);
   });
   
   
 
-  // Add event listeners for search input
-  document.getElementById("search-input_desktop").addEventListener("input", function () {
-    // Don't update the table immediately, wait for the search button to be clicked
-  });
+ // Remove the "input" event listeners for search input
+document.getElementById("search-input_desktop").removeEventListener("input", function () {});
+document.getElementById("search-input_mobile").removeEventListener("input", function () {});
 
-  document.getElementById("search-input_mobile").addEventListener("input", function () {
-    // Don't update the table immediately, wait for the search button to be clicked
-  });
 
   // Add event listeners for lion filters
   ["desktop", "mobile"].forEach((formType) => {
@@ -115,19 +112,16 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   
 
-  
   function updateSections(formType) {
     updateSectionFilter(formType);
-  }
-  
-  function updateCategories(formType) {
     updateCategoryFilter(formType);
   }
   
+
   function updateSectionFilter(formType) {
     const lion = document.getElementById(`lion-filter_${formType}`).value;
-    const currentSection = document.getElementById(`section-filter_${formType}`).value; // Store the current section value
-
+    const currentSection = document.getElementById(`section-filter_${formType}`).value;
+  
     fetch(`/get-sections?lion=${lion}`)
       .then((response) => response.json())
       .then((data) => {
@@ -136,36 +130,54 @@ document.addEventListener("DOMContentLoaded", function () {
         data.forEach((section) => {
           sectionSelect.innerHTML += `<option value="${section}">${section}</option>`;
         });
-
-        // Set the selected value for the section dropdown
+  
         sectionSelect.value = currentSection;
       });
   }
-  
-  function updateCategoryFilter(formType) {
-    const section = document.getElementById(`section-filter_${formType}`).value;
-    const currentCategory = document.getElementById(`category-filter_${formType}`).value; // Store the current category value
 
-    fetch(`/get-categories?section=${section}`)
+  function updateCategories(formType) {
+    // Placeholder function, implement as needed
+  }
+
+
+  function updateCategoryFilter(formType) {
+    const lion = document.getElementById(`lion-filter_${formType}`).value;
+    const section = document.getElementById(`section-filter_${formType}`).value;
+    const currentCategory = document.getElementById(`category-filter_${formType}`).value;
+  
+    const params = new URLSearchParams();
+    params.append("lion", lion);
+    params.append("section", section);
+  
+    fetch(`/get-categories?${params.toString()}`)
       .then((response) => response.json())
       .then((data) => {
         const categorySelect = document.getElementById(`category-filter_${formType}`);
-        categorySelect.innerHTML = `<option value="">All</option>`;
+        const selectedCategory = categorySelect.value; // Get the selected category before clearing the options
+        categorySelect.innerHTML = ""; // Clear the options
+  
+        // Add "All" as the first option
+        const allOption = document.createElement("option");
+        allOption.value = "";
+        allOption.textContent = "All";
+        categorySelect.appendChild(allOption);
+  
         data.forEach((category) => {
-          categorySelect.innerHTML += `<option value="${category}">${category}</option>`;
+          const option = document.createElement("option");
+          option.value = category;
+          option.textContent = category;
+          categorySelect.appendChild(option);
         });
-
-        // Set the selected value for the category dropdown
-        categorySelect.value = currentCategory;
+  
+        categorySelect.value = selectedCategory || ""; // Set the selected category
+      })
+      .then(() => {
+        updateTable(formType); // Update the table after the categories are fetched
       });
   }
-
   
 
-
-});
-
-function submitTable(formType) {
-   event.preventDefault();
+function submitTable(formType, event) {
+  event.preventDefault();
   updateTable(formType);
-}
+};
