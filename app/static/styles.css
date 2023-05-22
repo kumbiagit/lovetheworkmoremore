@@ -9,7 +9,7 @@ body {
 body {
   background-color: black;
   font-family: 'Courier New', monospace;
-  color: gold;
+  color: white;
   font-size: 16px;
   line-height: 1.5;
 }
@@ -194,7 +194,6 @@ table td {
   align-items: start;
   justify-content: start;
   width: 1200px;
-  background-color: tomato;
 }
 
 .search-container {
@@ -228,6 +227,7 @@ table td {
   align-items: center;
 }
 .label-form{
+  color: gold;
   width: 330px;
   display: flex;
   flex-direction: row;
@@ -241,7 +241,9 @@ table td {
   align-items: center;
   justify-content: center;
 }
-
+.table-header{
+  color: gold;
+}
 
 /* MEDIA QUERY */
 
@@ -327,7 +329,9 @@ table td {
   
   table, thead, tbody, th, td, tr {
     display: block;
+    color: white;
   }
+  
 
   thead tr {
     position: absolute;
