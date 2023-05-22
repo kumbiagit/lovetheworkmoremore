@@ -60,6 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
     submitTable("mobile");
   });
   
+  
 
   // Add event listeners for search input
   document.getElementById("search-input_desktop").addEventListener("input", function () {
@@ -91,15 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   
 
-  function searchData(device) {
-    clearFilters(device);
-    submitTable(device);
-    if (device === 'mobile') {
-      toggleMenu();
-    }
-  }
-  
-  
+
   
   document.getElementById("search-button_desktop").addEventListener("click", function () {
     updateTable("desktop");
@@ -123,42 +116,6 @@ document.addEventListener("DOMContentLoaded", function () {
   
 
   
-
-  function updateTable(formType) {
-    const searchInput = document.getElementById(`search-input_${formType}`).value;
-    const lion = document.getElementById(`lion-filter_${formType}`).value;
-    const section = document.getElementById(`section-filter_${formType}`).value;
-    const category = document.getElementById(`category-filter_${formType}`).value;
-    const year = document.getElementById(`year-filter_${formType}`).value;
-    const award = document.getElementById(`award-filter_${formType}`).value;
-  
-    fetch(`/get-data?search=${searchInput}&lion=${lion}&section=${section}&category=${category}&year=${year}&award=${award}`)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        // Update the table with the fetched data here
-  
-        const tableBody = document.getElementById("table-body");
-        tableBody.innerHTML = "";
-  
-        data.forEach((row) => {
-          const tableRow = document.createElement("tr");
-  
-          Object.entries(row).forEach(([key, value]) => {
-            const tableData = document.createElement("td");
-            if (key === "entrant_company") { // Changed to snake_case
-              tableData.textContent = value;
-            } else {
-              tableData.textContent = value || "";
-            }
-            tableRow.appendChild(tableData);
-            tableBody.appendChild(tableRow);
-          });          
-        });
-      });
-  }
-  
-
   function updateSections(formType) {
     updateSectionFilter(formType);
   }
@@ -167,7 +124,6 @@ document.addEventListener("DOMContentLoaded", function () {
     updateCategoryFilter(formType);
   }
   
-
   function updateSectionFilter(formType) {
     const lion = document.getElementById(`lion-filter_${formType}`).value;
     const currentSection = document.getElementById(`section-filter_${formType}`).value; // Store the current section value
@@ -204,16 +160,12 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   }
 
-  // Add event listeners for category filters
-  ["desktop", "mobile"].forEach((formType) => {
-    document.getElementById(`category-filter_${formType}`).addEventListener("change", function () {
-      updateTable(formType);
-    });
-  });
+  
 
 
 });
 
 function submitTable(formType) {
+   event.preventDefault();
   updateTable(formType);
 }
