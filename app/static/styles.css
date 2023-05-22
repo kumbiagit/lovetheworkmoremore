@@ -174,7 +174,7 @@ table td {
   margin-right: 1rem;
 }
 
-.header {
+.header{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
