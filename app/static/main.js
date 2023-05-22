@@ -33,9 +33,6 @@ function updateTable(formType) {
     });
 }
 
-
-
-
 document.addEventListener("DOMContentLoaded", function () {
   // Get the filter values from the URL query string
   var urlParams = new URLSearchParams(window.location.search);
