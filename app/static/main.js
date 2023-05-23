@@ -31,6 +31,7 @@ function updateTable(formType) {
         tableBody.appendChild(tableRow);
       });
     });
+    // PREVIOUS VERSION
 }
 
 
@@ -163,10 +164,12 @@ document.addEventListener("DOMContentLoaded", function () {
   
 
   function updateSections(formType) {
+    console.log(`updateSections called for form type: ${formType}`);
     updateSectionFilter(formType);
   }
   
   function updateCategories(formType) {
+    console.log(`updateCategories called for form type: ${formType}`);
     updateCategoryFilter(formType);
   }
   
@@ -203,7 +206,7 @@ document.addEventListener("DOMContentLoaded", function () {
     } else if (section) {
       categoryFetchUrl += `?section=${section}`;
     } else {
-      // If neither lion or section have valid values, clear the category filter
+      // If neither lion nor section have valid values, clear the category filter
       const categorySelect = document.getElementById(`category-filter_${formType}`);
       categorySelect.innerHTML = `<option value="">All</option>`;
       categorySelect.value = "";
@@ -222,7 +225,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Set the selected value for the category dropdown
         categorySelect.value = currentCategory;
       });
-  }
+  }  
 
   ["desktop", "mobile"].forEach((formType) => {
     document.getElementById(`lion-filter_${formType}`).addEventListener("change", function () {
@@ -231,11 +234,18 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   
     // Add event listeners for section filters
-    document.getElementById(`section-filter_${formType}`).addEventListener("change", function () {
+    const sectionFilter = document.getElementById(`section-filter_${formType}`);
+    const categoryFilter = document.getElementById(`category-filter_${formType}`);
+  
+    sectionFilter.addEventListener("change", function () {
+      // Reset category filter to "All"
+      categoryFilter.value = "";
+  
       updateCategories(formType);
     });
-  });  
-
+  });
+  
+  
 });
 
 function submitTable(formType) {
