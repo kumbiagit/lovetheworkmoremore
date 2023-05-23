@@ -277,9 +277,10 @@ table td {
 @media screen and (max-width: 1400px) {
   .search-container{
     margin-left: 0px;
+    padding-left: 8px;
   }
   .input-search-box{
-    width: 470px;
+    width: 460px;
   }
   .filters-and-search{
     flex-direction: column;
