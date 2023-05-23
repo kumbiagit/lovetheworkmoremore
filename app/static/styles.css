@@ -258,7 +258,7 @@ table td {
     flex-direction: column;
   }
   .first-row{
-    flex-direction: column;
+    //flex-direction: column;
     align-items: start;
     justify-content: start;
   }

@@ -125,6 +125,43 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   
 
+  
+
+  function updateTable(formType) {
+    const searchInput = document.getElementById(`search-input_${formType}`).value;
+    const lion = document.getElementById(`lion-filter_${formType}`).value;
+    const section = document.getElementById(`section-filter_${formType}`).value;
+    const category = document.getElementById(`category-filter_${formType}`).value;
+    const year = document.getElementById(`year-filter_${formType}`).value;
+    const award = document.getElementById(`award-filter_${formType}`).value;
+  
+    fetch(`/get-data?search=${searchInput}&lion=${lion}&section=${section}&category=${category}&year=${year}&award=${award}`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        // Update the table with the fetched data here
+  
+        const tableBody = document.getElementById("table-body");
+        tableBody.innerHTML = "";
+  
+        data.forEach((row) => {
+          const tableRow = document.createElement("tr");
+  
+          Object.entries(row).forEach(([key, value]) => {
+            const tableData = document.createElement("td");
+            if (key === "entrant_company") { // Changed to snake_case
+              tableData.textContent = value;
+            } else {
+              tableData.textContent = value || "";
+            }
+            tableRow.appendChild(tableData);
+            tableBody.appendChild(tableRow);
+          });          
+        });
+      });
+  }
+  
+
   function updateSections(formType) {
     updateSectionFilter(formType);
   }
@@ -133,6 +170,7 @@ document.addEventListener("DOMContentLoaded", function () {
     updateCategoryFilter(formType);
   }
   
+
   function updateSectionFilter(formType) {
     const lion = document.getElementById(`lion-filter_${formType}`).value;
     const currentSection = document.getElementById(`section-filter_${formType}`).value; // Store the current section value
@@ -151,15 +189,14 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   }
   
-  function updateCategoryFilter(device) {
-    const lion = document.getElementById(`lion-filter_${device}`).value;
-    const section = document.getElementById(`section-filter_${device}`).value;
-    const currentCategory = document.getElementById(`category-filter_${device}`).value; 
+  function updateCategoryFilter(formType) {
+    const section = document.getElementById(`section-filter_${formType}`).value;
+    const currentCategory = document.getElementById(`category-filter_${formType}`).value; // Store the current category value
 
-    fetch(`/get-categories?lion=${lion}&section=${section}`)
+    fetch(`/get-categories?section=${section}`)
       .then((response) => response.json())
       .then((data) => {
-        const categorySelect = document.getElementById(`category-filter_${device}`);
+        const categorySelect = document.getElementById(`category-filter_${formType}`);
         categorySelect.innerHTML = `<option value="">All</option>`;
         data.forEach((category) => {
           categorySelect.innerHTML += `<option value="${category}">${category}</option>`;
@@ -168,9 +205,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Set the selected value for the category dropdown
         categorySelect.value = currentCategory;
       });
-}
-
-
+  }
 
   // Add event listeners for category filters
   ["desktop", "mobile"].forEach((formType) => {
