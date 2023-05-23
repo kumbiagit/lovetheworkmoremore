@@ -16,6 +16,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
+    <div class="toggleMenu" onclick="toggleMenu()">
+      <div class="hamburger"></div>
+      <div class="hamburger"></div>
+      <div class="hamburger"></div>
+    </div>
     <div class="header">
       <div class="logo-container">
         <img src="{{ url_for('static', filename='assets/LTWMM-LOGO_980.png') }}" alt="Logo">
@@ -63,7 +68,7 @@
               <input type="submit" value="Filter" onclick="submitTable('mobile');toggleMenu();"/>
               <label for="search-input">Search:</label>
               <input type="text" id="search-input_mobile" placeholder="Search">
-              <button onclick="searchData('mobile');toggleMenu();">Search</button>
+              <button id="search-button_mobile" onclick="searchData('mobile');toggleMenu();">Search</button>
             </form>
           </div>
           <form id="filters-form-desktop" onsubmit="event.preventDefault()">
@@ -113,25 +118,20 @@
                 {% endfor %}
               </select>
               </div>
-              
-              
-            </div><br>
-            <div class="second-row">
-              
-              
-              <div class="filter-section">
+              <div class="label-form filter-section">
                 <button id="apply-filter" class="apply-filter-btn" onclick="submitTable('desktop')">Filter</button>
               </div>
+            </div>
             </div>
           </form>          
         <div class="search-container">
           <form>
-            <div class="label-form">
+            <div class="search-box">
               <label for="search-input">Search:</label>
-            <input type="text" id="search-input_desktop" placeholder="Search" >
+            <input type="text" id="search-input_desktop" placeholder="Search" class="input-search-box">
+            <button id="search-button_desktop" onclick="searchData('desktop');">Search</button>
             </div>
-            
-            <button onclick="searchData('desktop');">Search</button>
+          
           </form>
         </div>
       </div>
@@ -166,13 +166,13 @@
             if (filters.style.display === "none") {
               filters.style.display = "block";
             } else {
-              filters.style.display = "none";
+              filters.style.display = "none";topnav
             }
             var topnav = document.getElementById("myTopnav");
             if (topnav.className === "topnav") {
               topnav.className += " responsive";
             } else {
-              topnav.className = "topnav";
+              topnav.className = "";
             }
           }
         </script>

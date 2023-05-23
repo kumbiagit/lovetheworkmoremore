@@ -31,6 +31,7 @@ function updateTable(formType) {
         tableBody.appendChild(tableRow);
       });
     });
+    // PREVIOUS VERSION
 }
 
 
@@ -163,10 +164,12 @@ document.addEventListener("DOMContentLoaded", function () {
   
 
   function updateSections(formType) {
+    console.log(`updateSections called for form type: ${formType}`);
     updateSectionFilter(formType);
   }
   
   function updateCategories(formType) {
+    console.log(`updateCategories called for form type: ${formType}`);
     updateCategoryFilter(formType);
   }
   
@@ -190,10 +193,27 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   
   function updateCategoryFilter(formType) {
+    const lion = document.getElementById(`lion-filter_${formType}`).value;
     const section = document.getElementById(`section-filter_${formType}`).value;
     const currentCategory = document.getElementById(`category-filter_${formType}`).value; // Store the current category value
-
-    fetch(`/get-categories?section=${section}`)
+  
+    let categoryFetchUrl = '/get-categories';
+  
+    if (lion && section) {
+      categoryFetchUrl += `?section=${section}&lion=${lion}`;
+    } else if (lion) {
+      categoryFetchUrl += `?lion=${lion}`;
+    } else if (section) {
+      categoryFetchUrl += `?section=${section}`;
+    } else {
+      // If neither lion nor section have valid values, clear the category filter
+      const categorySelect = document.getElementById(`category-filter_${formType}`);
+      categorySelect.innerHTML = `<option value="">All</option>`;
+      categorySelect.value = "";
+      return; // Don't fetch new categories
+    }
+  
+    fetch(categoryFetchUrl)
       .then((response) => response.json())
       .then((data) => {
         const categorySelect = document.getElementById(`category-filter_${formType}`);
@@ -201,22 +221,52 @@ document.addEventListener("DOMContentLoaded", function () {
         data.forEach((category) => {
           categorySelect.innerHTML += `<option value="${category}">${category}</option>`;
         });
-
+  
         // Set the selected value for the category dropdown
         categorySelect.value = currentCategory;
       });
-  }
+  }  
 
-  // Add event listeners for category filters
   ["desktop", "mobile"].forEach((formType) => {
-    document.getElementById(`category-filter_${formType}`).addEventListener("change", function () {
-      updateTable(formType);
+    document.getElementById(`lion-filter_${formType}`).addEventListener("change", function () {
+      updateSections(formType);
+      updateCategories(formType);
+    });
+  
+    // Add event listeners for section filters
+    const sectionFilter = document.getElementById(`section-filter_${formType}`);
+    const categoryFilter = document.getElementById(`category-filter_${formType}`);
+  
+    sectionFilter.addEventListener("change", function () {
+      // Reset category filter to "All"
+      categoryFilter.value = "";
+  
+      updateCategories(formType);
     });
   });
-
-
+  
+  
 });
 
 function submitTable(formType) {
   updateTable(formType);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
