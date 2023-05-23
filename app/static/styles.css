@@ -272,13 +272,10 @@ table td {
   margin: 6px 0px;
 }
 
+
 /* MEDIA QUERY */
 
 @media screen and (max-width: 1400px) {
-
-  .search-box {
-    display: none;
-  }
   .search-container{
     margin-left: 0px;
     padding-left: 8px;
@@ -304,6 +301,11 @@ table td {
 }
 
 @media screen and (max-width: 800px) {
+
+  #search-box_desktop, #filters-form-desktop {
+    display: none;
+  }
+
   .filters-container{
     width: 400px;
     align-items: center;
@@ -420,8 +422,11 @@ table td {
   td {
     padding-bottom: 1.5rem;
   }
+  .search-box {
+    display: none;
+  }
+  
 }
-
 
 
 @media screen and (max-width: 600px) {

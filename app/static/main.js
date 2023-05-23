@@ -10,29 +10,41 @@ function updateTable(formType) {
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
-      // Update the table with the fetched data here
 
       const tableBody = document.getElementById("table-body");
       tableBody.innerHTML = "";
 
-      data.forEach((row) => {
-        const tableRow = document.createElement("tr");
-        const columnHeaders = ["year", "brand", "entrant_company", "title", "lion", "category", "section", "award"];
-        columnHeaders.forEach((header) => {
-          const tableData = document.createElement("td");
-          if (header === "entrant_company") {
-            tableData.setAttribute("data-order", row[header]); // set data-order attribute
-            tableData.textContent = row[header];
-          } else {
-            tableData.textContent = row[header] || "";
-          }
-          tableRow.appendChild(tableData);
-        });
-        tableBody.appendChild(tableRow);
-      });
+      if (data.length === 0) {
+        const noResultsRow = document.createElement("tr");
+        const noResultsCell = document.createElement("td");
+        noResultsCell.textContent = "Nothing to see here! Try something else.";
+        noResultsCell.colSpan = 8; // Set the colspan to match the number of columns
+        noResultsRow.appendChild(noResultsCell);
+        tableBody.appendChild(noResultsRow);
+      } else {
+        data.forEach((row) => {
+          const tableRow = document.createElement("tr");
+          const columnHeaders = ["year", "brand", "entrant_company", "title", "lion", "category", "section", "award"];
+          columnHeaders.forEach((header) => {
+            const tableData = document.createElement("td");
+            if (header === "lion") { // Check if the header is "lion"
+              tableData.textContent = row[header]; // Use row[header] to get the lion name
+            } else if (header === "entrant_company") {
+              tableData.setAttribute("data-order", row[header]);
+              tableData.textContent = row[header];
+            } else {
+              tableData.textContent = row[header] || "";
+            }
+            tableRow.appendChild(tableData);
+          });
+          tableBody.appendChild(tableRow);
+        });        
+      }
     });
-    // PREVIOUS VERSION
 }
+
+
+
 
 
 
@@ -93,8 +105,32 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById(`year-filter_${device}`).selectedIndex = 0;
     document.getElementById(`award-filter_${device}`).selectedIndex = 0;
   }
+  function toggleMenu() {
+    var filters = document.getElementById("filters");
+    if (filters.style.display === "none") {
+      filters.style.display = "block";
+    } else {
+      filters.style.display = "none";
+    }
+    
+    var topnav = document.getElementById("myTopnav");
+    if (topnav.className === "topnav") {
+      topnav.className += " responsive";
+    } else {
+      topnav.className = "topnav";
+    }
+  }
   
-
+  function closeMenu() {
+    var filters = document.getElementById("filters");
+    filters.style.display = "none";
+    
+    var topnav = document.getElementById("myTopnav");
+    topnav.className = "topnav";
+  }
+  
+  
+  
   function searchData(device) {
     clearFilters(device);
     submitTable(device);
@@ -102,14 +138,15 @@ document.addEventListener("DOMContentLoaded", function () {
       toggleMenu();
     }
   }
+
   
-  
-  
-  document.getElementById("search-button_desktop").addEventListener("click", function () {
+  document.getElementById("search-button_desktop").addEventListener("click", function (event) {
+    event.preventDefault();
     updateTable("desktop");
   });
   
-  document.getElementById("search-button_mobile").addEventListener("click", function () {
+  document.getElementById("search-button_mobile").addEventListener("click", function (event) {
+    event.preventDefault();
     updateTable("mobile");
   });
 
@@ -124,43 +161,7 @@ document.addEventListener("DOMContentLoaded", function () {
       console.error(`Element with ID "${elementId}_${formType}" not found.`);
     }
   }
-  
 
-  
-
-  function updateTable(formType) {
-    const searchInput = document.getElementById(`search-input_${formType}`).value;
-    const lion = document.getElementById(`lion-filter_${formType}`).value;
-    const section = document.getElementById(`section-filter_${formType}`).value;
-    const category = document.getElementById(`category-filter_${formType}`).value;
-    const year = document.getElementById(`year-filter_${formType}`).value;
-    const award = document.getElementById(`award-filter_${formType}`).value;
-  
-    fetch(`/get-data?search=${searchInput}&lion=${lion}&section=${section}&category=${category}&year=${year}&award=${award}`)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        // Update the table with the fetched data here
-  
-        const tableBody = document.getElementById("table-body");
-        tableBody.innerHTML = "";
-  
-        data.forEach((row) => {
-          const tableRow = document.createElement("tr");
-  
-          Object.entries(row).forEach(([key, value]) => {
-            const tableData = document.createElement("td");
-            if (key === "entrant_company") { // Changed to snake_case
-              tableData.textContent = value;
-            } else {
-              tableData.textContent = value || "";
-            }
-            tableRow.appendChild(tableData);
-            tableBody.appendChild(tableRow);
-          });          
-        });
-      });
-  }
   
 
   function updateSections(formType) {
@@ -250,23 +251,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function submitTable(formType) {
   updateTable(formType);
+  closeMenu(); // Close the menu after updating the table
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
