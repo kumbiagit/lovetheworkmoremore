@@ -92,18 +92,28 @@ def get_sections_for_lion(lion):
     sections = Hatethework.query.with_entities(Hatethework.section).filter_by(lion=lion).distinct().all()
     return [sec[0].strip() for sec in sections if sec[0] is not None]
 
-def get_categories_for_section(section):
-    categories = Hatethework.query.with_entities(Hatethework.category).filter_by(section=section).distinct().all()
-    return [cat[0].strip() for cat in categories]  # Add .strip() here
+def get_categories_for_section_and_lion(section, lion):
+    categories = Hatethework.query.with_entities(Hatethework.category).filter_by(section=section, lion=lion).distinct().all()
+    return [cat[0].strip() for cat in categories if cat[0] is not None]
 
 @app.route('/get-categories', methods=['GET'])
 def get_categories():
-    section = request.args.get('section', '')
-    print(f"Received section: {section}")  # Add this line
-    categories = get_categories_for_section(section)
-    if categories:
-        return jsonify([category for category in categories if category is not None])
-    return jsonify([])
+    section = request.args.get('section', None)
+    lion = request.args.get('lion', None)
+
+    query = Hatethework.query.with_entities(Hatethework.category).distinct()
+
+    if section:
+        query = query.filter_by(section=section)
+
+    if lion:
+        query = query.filter_by(lion=lion)
+
+    categories = query.all()
+
+    return jsonify([cat[0].strip() for cat in categories if cat[0] is not None])
+
+
 
 @app.route('/get-sections', methods=['GET'])
 def get_sections():
