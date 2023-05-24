@@ -1974,7 +1974,7 @@ def get_data(search=None, lion=None, section=None, category=None, year=None, awa
 "AKE DEMO": "http://sunetahouse.com/video/226289889",
 "ADIDAS ORIGINALS X ALEXANDER WANG (JOHANNES LEONARDO NEW YORK)": "https://clios.com/fashion-beauty/winner/prestige-public-relations/adidas-originals/adidas-originals-x-alexander-wang-s2-39902",
 "ALL NIGHT LONG TRADING": "https://dare.havas.com/news-archive/all-night-long/",
-"“A MAN LIKE YOU”": "https://www.youtube.com/watch?v=jIDLa5zhO8A&feature=emb_title",
+"A MAN LIKE YOU": "https://www.youtube.com/watch?v=jIDLa5zhO8A&feature=emb_title",
 "ALEXANDER WANG X ADIDAS ORIGINALS": "https://clios.com/fashion-beauty/winner/prestige-public-relations/adidas-originals/adidas-originals-x-alexander-wang-s2-39902",
 "AMERICA. JUST LIKE THE MOVIES.": "https://www.youtube.com/watch?v=CXFMQss33CQ&ab_channel=GREATADS%26LESSGREATADS%28BUTSTILLOK%29",
 "ANSWERING THE CALL": "https://www.dandad.org/awards/professional/2019/radio-audio/231022/answering-the-call/",
