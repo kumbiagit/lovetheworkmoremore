@@ -80,7 +80,7 @@ th, td {
 
 a:link, a:visited,  a:hover, a:active {
   text-decoration: none;
-  color: white;
+  color: fuchsia;
 }
 
 input[type='submit'] {
@@ -382,7 +382,7 @@ table td {
 
   tr {
     margin: 0 0 1rem 0;
-    border-bottom: 1px solid #03A014;
+    border-bottom: 1px solid gold;
   }
 
 

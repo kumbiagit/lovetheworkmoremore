@@ -152,7 +152,18 @@
         </tr>
       </thead>
       <tbody id="table-body">
-        <!-- Table content will be added using JavaScript -->
+        {% for row in data %}
+          <tr>
+            <td>{{ row.year }}</td>
+            <td>{{ row.brand }}</td>
+            <td>{{ row.entrant_company }}</td>
+            <td>{% if row.link %}<a href="{{ row.link }}" target="_blank">{{ row.title }}</a>{% else %}{{ row.title }}{% endif %}</td>
+            <td>{{ row.lion }}</td>
+            <td>{{ row.category }}</td>
+            <td>{{ row.section }}</td>
+            <td>{{ row.award }}</td>
+          </tr>
+        {% endfor %}
       </tbody>
     </table>
   </div>
