@@ -80,7 +80,7 @@ th, td {
 
 a:link, a:visited,  a:hover, a:active {
   text-decoration: none;
-  color: white;
+  color: fuchsia;
 }
 
 input[type='submit'] {
