@@ -34,6 +34,14 @@ body {
       align-content: space-around;
 }
 
+#table-body {
+  color: #ddd;
+}
+
+#table-body a{
+  color: fuchsia;
+}
+
 /* TABLE STYLES, FILTERS AND SELECTORS */
 select,
 input,
@@ -343,7 +351,8 @@ table td {
   td {
     background: transparent;
     position: relative;
-    padding-left: 50%;
+    padding-left: 60%;  
+    word-wrap: break-word;
   }
 
   td:before {
@@ -354,6 +363,11 @@ table td {
     padding-right: 10px;
     white-space: nowrap;
   }
+
+  table td {
+    word-wrap: break-word;
+  }
+  
 
   td:nth-of-type(1):before { content: "Year"; }
   td:nth-of-type(2):before { content: "Brand"; }
