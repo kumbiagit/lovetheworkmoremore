@@ -20,9 +20,9 @@
   <div class="header">
       <div class="logo-container">
         <a href="">
-        <img src="{{ url_for('static', filename='assets/LTWMM-LOGO_980.png') }}" alt="Logo">
+        <img src="{{ url_for('static', filename='assets/LTWMM-LOGO_980.png') }}" alt="Logo" height="200px" width="200px">
         </a>
-      </div>      
+      </div>
       <div class="filters-and-search">
         <div class="filters-container">
           <div id="filters" style="display:none;">
@@ -186,7 +186,7 @@
   function closeMenu() {
     var filters = document.getElementById("filters");
     filters.style.display = "none";
-    
+
     var topnav = document.getElementById("myTopnav");
     topnav.className = "topnav";
   }
@@ -195,8 +195,6 @@
     updateTable(formType);
     closeMenu(); // Close the menu after updating the table
   }
-
-  // Rest of your JavaScript code...
 
 </script>
 </html>
