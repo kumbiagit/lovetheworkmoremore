@@ -1336,6 +1336,7 @@ def get_data(search=None, lion=None, section=None, category=None, year=None, awa
 "72POSTERS": "https://www.youtube.com/watch?v=cmV5VmHM-JA",
 "7:1 FURNITURE COLLECTION": "https://www.youtube.com/watch?v=T6yb5nZBX9U&ab_channel=BBDOBangkok",
 "2018 WRAPPED": "https://clios.com/awards/winner/integrated-campaign/spotify/2018-wrapped-63631",
+"2016 WRAPPED": "https://www.oneclub.org/awards/adcawards/-award/27360/2016-wrapped"
 "12-HOUR DRIVE THRU": "https://clios.com/awards/winner/out-of-home/popeyes-louisiana-kitchen/popeyes-12-hour-drive-thru-71072",
 "110 YEARS OF THE STRIDING MAN": "https://www.lbbonline.com/news/cpbs-new-johnnie-walker-packaging-marks-110th-anniversary-of-the-striding-man",
 "YOU NEED IT": "https://www.adsoftheworld.com/media/print/sekron_home_security_you_need_it",
@@ -1915,7 +1916,7 @@ def get_data(search=None, lion=None, section=None, category=None, year=None, awa
 "STATION WITH A VIEW": "http://www.nielsvincent.fr/2018",
 "#STANDBYTOUGHTMOMS": "https://adsspot.me/media/tv-commercials/all-out-standbytoughmoms-dd2e010a09d2",
 "SPOTTED": "https://clios.com/awards/winner/public-relations/key-biscayne-lalcec/spotted-50186",
-"SKODA X HANDSOME DANCER “COINCIDANCE”": "https://www.lbbonline.com/work/29059",
+"SKODA X HANDSOME DANCER COINCIDANCE": "https://www.lbbonline.com/work/29059",
 "SILVERADO: THEN AND NOW PRINT": "https://www.dandad.org/awards/professional/2018/press-advertising/27129/silverado-then-and-now-print-campaign-1-2-3/",
 "SHAVING": "https://www.youtube.com/watch?time_continue=1&v=XgxhHXpk8Ls&feature=emb_title&ab_channel=lg2",
 "SELF DISCOUNTING PRODUCTS": "https://istanbul.ddb.com/en/works/koctas-self-discounting-products/",

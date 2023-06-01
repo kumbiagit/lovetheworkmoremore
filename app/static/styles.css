@@ -1,16 +1,3 @@
-/*
-* Prefixed by https://autoprefixer.github.io
-* PostCSS: v8.4.14,
-* Autoprefixer: v10.4.7
-* Browsers: last 4 version
-*/
-
-/* 
-* NO TIENE BUTTON-SEARCH
-* no tiene search-box
-* no tiene input-search-box 
-*/
-
 html,
 body {
   max-width: 100%;
@@ -22,7 +9,7 @@ body {
 body {
   background-color: black;
   font-family: 'Courier New', monospace;
-  color: gold;
+  color: white;
   font-size: 16px;
   line-height: 1.5;
 }
@@ -30,16 +17,7 @@ body {
 .table-container {
   width: 90%;
   margin: 0 auto;
-  -ms-flex-line-pack: distribute;
-      align-content: space-around;
-}
-
-#table-body {
-  color: #ddd;
-}
-
-#table-body a{
-  color: fuchsia;
+  align-content: space-around;
 }
 
 /* TABLE STYLES, FILTERS AND SELECTORS */
@@ -51,7 +29,15 @@ button {
   color: white;
   font-family: 'Courier New', Courier, monospace;
 }
-
+.button-search{
+  display: flex;
+  flex-direction: row;
+  width: 320;
+  align-items: end;
+  justify-content: end;
+  padding-left: auto;
+  padding-right: 10px;
+}
 select {
   width: 200px;
 }
@@ -94,7 +80,7 @@ th, td {
 
 a:link, a:visited,  a:hover, a:active {
   text-decoration: none;
-  color: white;
+  color: fuchsia;
 }
 
 input[type='submit'] {
@@ -154,34 +140,24 @@ table td {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.8);
   display: none;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   z-index: 1000;
 }
 
 #filters-form {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   padding: 20px;
 }
 
 #filters-form label,
 #filters-form select {
-  display: block;
+  display: flex;
   margin: 10px 0;
+  width: 400px;
   text-align: center;
 }
 
@@ -194,93 +170,157 @@ table td {
   cursor: pointer;
 }
 
-
-
-
-
 .header .menu-icon {
   margin-right: 1rem;
 }
 
-.header {
-  display: -webkit-box;
-  display: -ms-flexbox;
+.header{
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .filters-and-search {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: row;
+  align-items: start;
+  justify-content: space-between;
 }
 
 .filters-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: row;
+  align-items: start;
+  justify-content: start;
+  width: auto;
 }
 
 .search-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: row;
+  align-items: center;
   margin-left: 20px;
+  height: 100px;
+  align-items: start;
+  justify-content: start;
 }
-
+.search-box{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  color: gold;
+}
+.input-search-box{
+  width: 200px;
+}
 .logo-container img {
-  max-width: 40%;
+  max-width: 200px;
   height: 100%;
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
-  padding-left: 50%;
-  padding-right: 50%;
+  align-self: center;
+  padding: 20px;
 }
 
 #filters-form-desktop .first-row,
 #filters-form-desktop .second-row {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-wrap: wrap;
+  justify-content: start;
+  align-items: center;
   margin-bottom: 1rem;
 }
 
 #filters-form-desktop .filter-section {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: end;
+  justify-content: end;
+  
+}
+.label-form{
+  color: gold;
+  width: 290px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 8px;
+}
+.header{
+  display: flex;
+  flex-direction: row;
+  margin: 10px 200px;
+  align-items: center;
+  justify-content: center;
+}
+.table-header{
+  color: gold;
 }
 
+/*Menu*/
+.toggleMenu{
+  width: 40PX;
+  height: 40px;
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+  display: none;
+}
+.hamburger{
+  width: 40px;
+  height: 4px;
+  background-color: white;
+  margin: 6px 0px;
+}
 
 /* MEDIA QUERY */
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1400px) {
+  .search-container{
+    margin-left: 0px;
+    padding-left: 8px;
+  }
+  .input-search-box{
+    width: 460px;
+  }
+  .filters-and-search{
+    flex-direction: column;
+    align-items: start;
+  }
+  .filters-container{
+    width: 700px;
+    flex-direction: column;
+  }
+  .first-row{
+    align-items: start;
+    justify-content: start;
+  }
+  .label-form{
+    width: 290px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .filters-container{
+    width: 400px;
+    align-items: center;
+  }
+  .second-row{
+    justify-content: center;
+  }
+  .first-row{
+    width: 360px;
+    flex-direction: column;
+  }
+  .header{
+    margin: 10px 20px;
+  }
+  .header{
+    flex-direction: column;
+  }
+  .filters-and-search{
+    flex-direction: column;
+    align-items: center;
+  }
   .topnav a.icon {
     display: block;
   }
@@ -301,28 +341,17 @@ table td {
     text-align: left;
   }
   .topnav.responsive #filters-form-mobile {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
   }
   #filters-form-mobile {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
     height: 50%;
     padding: 20px;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
+    box-sizing: border-box;
+    justify-content: space-around;
   }
   
   #filters-form-mobile label,
@@ -332,9 +361,12 @@ table td {
     text-align: center;
     width: 80%;
   }
+  
   table, thead, tbody, th, td, tr {
     display: block;
+    color: white;
   }
+  
 
   thead tr {
     position: absolute;
@@ -351,8 +383,7 @@ table td {
   td {
     background: transparent;
     position: relative;
-    padding-left: 60%;  
-    word-wrap: break-word;
+    padding-left: 50%;
   }
 
   td:before {
@@ -363,11 +394,6 @@ table td {
     padding-right: 10px;
     white-space: nowrap;
   }
-
-  table td {
-    word-wrap: break-word;
-  }
-  
 
   td:nth-of-type(1):before { content: "Year"; }
   td:nth-of-type(2):before { content: "Brand"; }
@@ -394,26 +420,23 @@ table td {
 
 
 
-@media screen and (min-width: 601px) {
+@media screen and (max-width: 600px) {
+  .input-search-box{
+    width: 200px;
+  }
+  .toggleMenu{
+    display: block;
+  }
+
   .topnav a.icon {
     display: none;
   }
-  .filters-container {
-    width: 85%;
-    padding-left: 1em;
-  }
+  
   #filters-form-desktop {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
     margin-top: 20px;
     margin-bottom: 20px;
     width: 100%;
@@ -422,10 +445,17 @@ table td {
   #filters-form-desktop select {
     margin: 0 10px;
   }
+  
   .filter-section {
     margin: 0 10px;
   }
   #filters-form-mobile {
-    display: none;
+    display: block;
   }
+  .first-row{
+    display: none;
+    height: 0px;
+    overflow: hidden;
+  }
+  
 }
