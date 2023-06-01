@@ -1,3 +1,13 @@
+<<<<<<< HEAD
+=======
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
+>>>>>>> 0d503aa3dbc7d25f99c9214d916935ab28283232
 html,
 body {
   max-width: 100%;
@@ -17,7 +27,12 @@ body {
 .table-container {
   width: 90%;
   margin: 0 auto;
+<<<<<<< HEAD
   align-content: space-around;
+=======
+  -ms-flex-line-pack: distribute;
+      align-content: space-around;
+>>>>>>> 0d503aa3dbc7d25f99c9214d916935ab28283232
 }
 
 /* TABLE STYLES, FILTERS AND SELECTORS */
@@ -30,11 +45,28 @@ button {
   font-family: 'Courier New', Courier, monospace;
 }
 .button-search{
+<<<<<<< HEAD
   display: flex;
   flex-direction: row;
   width: 320;
   align-items: end;
   justify-content: end;
+=======
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 320;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: end;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+>>>>>>> 0d503aa3dbc7d25f99c9214d916935ab28283232
   padding-left: auto;
   padding-right: 10px;
 }
@@ -78,7 +110,11 @@ th, td {
   color: white;
 }
 
-a:link, a:visited,  a:hover, a:active {
+a:link, a:hover, a:active {
+  color: fuchsia;
+}
+
+a:visited {
   text-decoration: none;
   color: fuchsia;
 }
@@ -155,6 +191,11 @@ table td {
 
 #filters-form label,
 #filters-form select {
+<<<<<<< HEAD
+=======
+  display: -webkit-box;
+  display: -ms-flexbox;
+>>>>>>> 0d503aa3dbc7d25f99c9214d916935ab28283232
   display: flex;
   margin: 10px 0;
   width: 400px;
@@ -175,29 +216,72 @@ table td {
 }
 
 .header{
+<<<<<<< HEAD
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+=======
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+>>>>>>> 0d503aa3dbc7d25f99c9214d916935ab28283232
 }
 
 .filters-and-search {
   display: flex;
+<<<<<<< HEAD
   flex-direction: row;
   align-items: start;
   justify-content: space-between;
+=======
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+>>>>>>> 0d503aa3dbc7d25f99c9214d916935ab28283232
 }
 
 .filters-container {
   display: flex;
+<<<<<<< HEAD
   flex-direction: row;
   align-items: start;
   justify-content: start;
+=======
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+>>>>>>> 0d503aa3dbc7d25f99c9214d916935ab28283232
   width: auto;
 }
 
 .search-container {
   display: flex;
+<<<<<<< HEAD
   flex-direction: row;
   align-items: center;
   margin-left: 20px;
@@ -210,35 +294,93 @@ table td {
   display: flex;
   flex-direction: row;
   color: gold;
+=======
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-left: 20px;
+  height: 100px;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+}
+.search-box{
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  color: gold;
+  margin: 8px;
+>>>>>>> 0d503aa3dbc7d25f99c9214d916935ab28283232
 }
 .input-search-box{
   width: 200px;
 }
 .logo-container img {
   max-width: 200px;
+<<<<<<< HEAD
   height: 100%;
   align-self: center;
+=======
+  height: 200px;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+>>>>>>> 0d503aa3dbc7d25f99c9214d916935ab28283232
   padding: 20px;
 }
 
 #filters-form-desktop .first-row,
 #filters-form-desktop .second-row {
   display: flex;
+<<<<<<< HEAD
   flex-wrap: wrap;
   justify-content: start;
   align-items: center;
+=======
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+>>>>>>> 0d503aa3dbc7d25f99c9214d916935ab28283232
   margin-bottom: 1rem;
 }
 
 #filters-form-desktop .filter-section {
   display: flex;
+<<<<<<< HEAD
   align-items: end;
   justify-content: end;
   
+=======
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: end;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+
+>>>>>>> 0d503aa3dbc7d25f99c9214d916935ab28283232
 }
 .label-form{
   color: gold;
   width: 290px;
+<<<<<<< HEAD
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -250,6 +392,35 @@ table td {
   margin: 10px 200px;
   align-items: center;
   justify-content: center;
+=======
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 8px;
+}
+.header{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin: 10px 200px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+>>>>>>> 0d503aa3dbc7d25f99c9214d916935ab28283232
 }
 .table-header{
   color: gold;
@@ -283,6 +454,7 @@ table td {
     width: 460px;
   }
   .filters-and-search{
+<<<<<<< HEAD
     flex-direction: column;
     align-items: start;
   }
@@ -293,6 +465,30 @@ table td {
   .first-row{
     align-items: start;
     justify-content: start;
+=======
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: start;
+  }
+  .filters-container{
+    width: 700px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .first-row{
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: start;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: start;
+>>>>>>> 0d503aa3dbc7d25f99c9214d916935ab28283232
   }
   .label-form{
     width: 290px;
@@ -300,6 +496,7 @@ table td {
 }
 
 @media screen and (max-width: 800px) {
+<<<<<<< HEAD
   .filters-container{
     width: 400px;
     align-items: center;
@@ -310,16 +507,54 @@ table td {
   .first-row{
     width: 360px;
     flex-direction: column;
+=======
+  .search-box{
+    display: none;
+  }
+  .filters-container{
+    width: 400px;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .second-row{
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .first-row{
+    width: 360px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+>>>>>>> 0d503aa3dbc7d25f99c9214d916935ab28283232
   }
   .header{
     margin: 10px 20px;
   }
   .header{
+<<<<<<< HEAD
     flex-direction: column;
   }
   .filters-and-search{
     flex-direction: column;
     align-items: center;
+=======
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .filters-and-search{
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+>>>>>>> 0d503aa3dbc7d25f99c9214d916935ab28283232
   }
   .topnav a.icon {
     display: block;
@@ -353,7 +588,7 @@ table td {
     box-sizing: border-box;
     justify-content: space-around;
   }
-  
+
   #filters-form-mobile label,
   #filters-form-mobile select {
     display: block;
@@ -361,12 +596,17 @@ table td {
     text-align: center;
     width: 80%;
   }
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> 0d503aa3dbc7d25f99c9214d916935ab28283232
   table, thead, tbody, th, td, tr {
     display: block;
     color: white;
   }
   
+
 
   thead tr {
     position: absolute;
@@ -376,7 +616,7 @@ table td {
 
   tr {
     margin: 0 0 1rem 0;
-    border-bottom: 1px solid #03A014;
+    border-bottom: 1px solid gold;
   }
 
 
@@ -416,11 +656,18 @@ table td {
   td {
     padding-bottom: 1.5rem;
   }
+  .toggleMenu{
+    display: block;
+  }
 }
 
 
 
 @media screen and (max-width: 600px) {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0d503aa3dbc7d25f99c9214d916935ab28283232
   .input-search-box{
     width: 200px;
   }
@@ -431,7 +678,11 @@ table td {
   .topnav a.icon {
     display: none;
   }
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> 0d503aa3dbc7d25f99c9214d916935ab28283232
   #filters-form-desktop {
     display: flex;
     justify-content: space-between;
@@ -445,7 +696,11 @@ table td {
   #filters-form-desktop select {
     margin: 0 10px;
   }
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> 0d503aa3dbc7d25f99c9214d916935ab28283232
   .filter-section {
     margin: 0 10px;
   }
@@ -457,5 +712,9 @@ table td {
     height: 0px;
     overflow: hidden;
   }
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> 0d503aa3dbc7d25f99c9214d916935ab28283232
 }
