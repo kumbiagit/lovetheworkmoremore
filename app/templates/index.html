@@ -2,12 +2,10 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>lovetheworkmoremore.com</title>
+  <title>lovetheworkmoreMORE!</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='assets/favicon16.png') }}">
-  <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='assets/favicon32.png') }}">
-  <link rel="icon" type="image/png" sizes="48x48" href="{{ url_for('static', filename='assets/favicon48.png') }}">
+  <link rel="icon" href="{{ url_for('static', filename='LTWMM-LOGO.ico') }}" type="image/x-icon">
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="{{ url_for('static', filename='main.js') }}"></script>
@@ -22,9 +20,9 @@
   <div class="header">
       <div class="logo-container">
         <a href="">
-        <img src="{{ url_for('static', filename='assets/LTWMM-LOGO_980.png') }}" alt="Logo">
+        <img src="{{ url_for('static', filename='assets/LTWMM-LOGO_980.png') }}" alt="Logo" height="200px" width="200px">
         </a>
-      </div>      
+      </div>
       <div class="filters-and-search">
         <div class="filters-container">
           <div id="filters" style="display:none;">
@@ -54,7 +52,7 @@
               <label for="year-filter_mobile">Year:</label>
               <select id="year-filter_mobile" name="year">
                 <option value="">All</option>
-                {% for year in range(2022, 2016, -1) %}
+                {% for year in range(2023, 2016, -1) %}
                 <option value="{{ year }}" {% if year == year_filter %}selected{% endif %}>{{ year }}</option>
                 {% endfor %}
               </select>
@@ -105,7 +103,7 @@
                   <label for="year-filter_desktop">Year:</label>
                   <select id="year-filter_desktop" name="year">
                     <option value="">All</option>
-                    {% for year in range(2022, 2016, -1) %}
+                    {% for year in range(2023, 2016, -1) %}
                     <option value="{{ year }}" {% if year == year_filter %}selected{% endif %}>{{ year }}</option>
                     {% endfor %}
                   </select>
@@ -137,6 +135,7 @@
       </div>
     </div>
   </div>
+
   <div class="table-container">
     <table>
       <thead>
@@ -167,6 +166,10 @@
       </tbody>
     </table>
   </div>
+  <div class="navbar">
+    <h3><a href="https://discord.gg/6cBYrAQknH">JOIN DISCORD</a></h3>
+    <h3><a href="https://www.lovetheworkmoremore.com/about">ABOUT US</a></h3>
+  </div>
 </body>
 
 <script>
@@ -188,7 +191,7 @@
   function closeMenu() {
     var filters = document.getElementById("filters");
     filters.style.display = "none";
-    
+
     var topnav = document.getElementById("myTopnav");
     topnav.className = "topnav";
   }

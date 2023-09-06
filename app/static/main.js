@@ -27,19 +27,18 @@ function updateTable(formType) {
           const columnHeaders = ["year", "brand", "entrant_company", "title", "lion", "category", "section", "award"];
           columnHeaders.forEach((header) => {
             const tableData = document.createElement("td");
-            if (header === "lion") {
-              tableData.textContent = row[header];
-            } else if (header === "entrant_company") {
-              tableData.setAttribute("data-order", row[header]);
-              tableData.textContent = row[header];
-            } else if (header === "title") {
-              const link = document.createElement("a");
-              link.href = row.link || "#"; // Use the link value if available, otherwise use "#" as a fallback
-              link.target = "_blank";
-              link.innerHTML = row.title; // Use the title instead of row[header]
-              tableData.appendChild(link);
+            if (header === "title") {
+              if (row.link) {
+                const link = document.createElement("a");
+                link.href = row.link; 
+                link.target = "_blank";
+                link.innerHTML = row.title; 
+                tableData.appendChild(link);
+              } else {
+                tableData.textContent = row.title || "";
+              }
             } else {
-              tableData.textContent = row[header] || "";
+              tableData.textContent = row[header] || ""; 
             }
             tableRow.appendChild(tableData);
           });

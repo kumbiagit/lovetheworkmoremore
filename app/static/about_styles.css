@@ -1,0 +1,139 @@
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+}
+
+body {
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  background-color: black;
+  font-family: 'Courier New', monospace;
+  color: white;
+  line-height: 1.7em;
+  font-size: 2vmin;
+}
+
+a, a:link, a:hover, a:active {
+  color: fuchsia;
+}
+
+h1 {
+  text-align: center;
+}
+
+p {
+  text-align: left;
+}
+
+.highlight {
+  color: yellow;
+}
+
+.logo-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: auto;
+  height: 50%;
+}
+
+.logo_LTWMM {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: auto;
+  height: 20vh;
+}
+
+.navbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+
+
+
+
+
+
+/* MEDIA QUERY */
+
+@media screen and (max-width: 2560px) {
+
+  body {
+    font-size: 2vmin;
+  }
+
+  h1 {
+    font-size: 2vw;
+  }
+  
+  p {
+    margin-left: 15vw;
+    margin-right: 15vw;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+  }
+
+  .navbar {
+    margin-left: 15vw;
+    margin-right: 15vw;
+  }  
+}
+
+
+@media screen and (max-width: 1440px) {
+
+  body {
+    font-size: 2vmin;
+  }
+}
+
+
+@media screen and (max-width: 1024px) {
+  body {
+    font-size: 1.75vmin;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  body {
+    font-size: 1.65vmin;
+  }
+}
+
+
+@media screen and (max-width: 600px) {
+  body {
+    font-size: 1.65vmin;
+  }
+}
+
+@media screen and (max-width: 425px) {
+
+  html,
+  body {
+    overflow: visible; 
+  }
+
+  body {
+    font-size: 4vmin;
+    line-height: 5.5vmin;
+  }
+
+  h1 {
+    font-size: 5vw;
+  }
+
+  .navbar {
+    display: block;
+    text-align: center;
+  }
+}
