@@ -6,34 +6,48 @@ function updateTable(formType) {
   const year = document.getElementById(`year-filter_${formType}`).value;
   const award = document.getElementById(`award-filter_${formType}`).value;
 
-  fetch(`/get-data?search=${searchInput}&lion=${lion}&section=${section}&category=${category}&year=${year}&award=${award}`)
+  fetch(`/get-data?search=${encodeURIComponent(searchInput)}&lion=${encodeURIComponent(lion)}&section=${encodeURIComponent(section)}&category=${encodeURIComponent(category)}&year=${encodeURIComponent(year)}&award=${encodeURIComponent(award)}`)
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
-      // Update the table with the fetched data here
 
       const tableBody = document.getElementById("table-body");
       tableBody.innerHTML = "";
 
-      data.forEach((row) => {
-        const tableRow = document.createElement("tr");
-        const columnHeaders = ["year", "brand", "entrant_company", "title", "lion", "category", "section", "award"];
-        columnHeaders.forEach((header) => {
-          const tableData = document.createElement("td");
-          if (header === "entrant_company") {
-            tableData.setAttribute("data-order", row[header]); // set data-order attribute
-            tableData.textContent = row[header];
-          } else {
-            tableData.textContent = row[header] || "";
-          }
-          tableRow.appendChild(tableData);
-        });
-        tableBody.appendChild(tableRow);
-      });
+      if (data.length === 0) {
+        const noResultsRow = document.createElement("tr");
+        const noResultsCell = document.createElement("td");
+        noResultsCell.textContent = "Nothing to see here! Try something else.";
+        noResultsCell.colSpan = 8; // Set the colspan to match the number of columns
+        noResultsRow.appendChild(noResultsCell);
+        tableBody.appendChild(noResultsRow);
+      } else {
+        data.forEach((row) => {
+          const tableRow = document.createElement("tr");
+          const columnHeaders = ["year", "brand", "entrant_company", "title", "lion", "category", "section", "award"];
+          columnHeaders.forEach((header) => {
+            const tableData = document.createElement("td");
+            if (header === "lion") {
+              tableData.textContent = row[header];
+            } else if (header === "entrant_company") {
+              tableData.setAttribute("data-order", row[header]);
+              tableData.textContent = row[header];
+            } else if (header === "title") {
+              const link = document.createElement("a");
+              link.href = row.link || "#"; // Use the link value if available, otherwise use "#" as a fallback
+              link.target = "_blank";
+              link.innerHTML = row.title; // Use the title instead of row[header]
+              tableData.appendChild(link);
+            } else {
+              tableData.textContent = row[header] || "";
+            }
+            tableRow.appendChild(tableData);
+          });
+          tableBody.appendChild(tableRow);
+        });        
+      }
     });
 }
-
-
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -92,8 +106,32 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById(`year-filter_${device}`).selectedIndex = 0;
     document.getElementById(`award-filter_${device}`).selectedIndex = 0;
   }
+  function toggleMenu() {
+    var filters = document.getElementById("filters");
+    if (filters.style.display === "none") {
+      filters.style.display = "block";
+    } else {
+      filters.style.display = "none";
+    }
+    
+    var topnav = document.getElementById("myTopnav");
+    if (topnav.className === "topnav") {
+      topnav.className += " responsive";
+    } else {
+      topnav.className = "topnav";
+    }
+  }
   
-
+  function closeMenu() {
+    var filters = document.getElementById("filters");
+    filters.style.display = "none";
+    
+    var topnav = document.getElementById("myTopnav");
+    topnav.className = "topnav";
+  }
+  
+  
+  
   function searchData(device) {
     clearFilters(device);
     submitTable(device);
@@ -101,14 +139,15 @@ document.addEventListener("DOMContentLoaded", function () {
       toggleMenu();
     }
   }
+
   
-  
-  
-  document.getElementById("search-button_desktop").addEventListener("click", function () {
+  document.getElementById("search-button_desktop").addEventListener("click", function (event) {
+    event.preventDefault();
     updateTable("desktop");
   });
   
-  document.getElementById("search-button_mobile").addEventListener("click", function () {
+  document.getElementById("search-button_mobile").addEventListener("click", function (event) {
+    event.preventDefault();
     updateTable("mobile");
   });
 
@@ -123,50 +162,16 @@ document.addEventListener("DOMContentLoaded", function () {
       console.error(`Element with ID "${elementId}_${formType}" not found.`);
     }
   }
-  
 
-  
-
-  function updateTable(formType) {
-    const searchInput = document.getElementById(`search-input_${formType}`).value;
-    const lion = document.getElementById(`lion-filter_${formType}`).value;
-    const section = document.getElementById(`section-filter_${formType}`).value;
-    const category = document.getElementById(`category-filter_${formType}`).value;
-    const year = document.getElementById(`year-filter_${formType}`).value;
-    const award = document.getElementById(`award-filter_${formType}`).value;
-  
-    fetch(`/get-data?search=${searchInput}&lion=${lion}&section=${section}&category=${category}&year=${year}&award=${award}`)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        // Update the table with the fetched data here
-  
-        const tableBody = document.getElementById("table-body");
-        tableBody.innerHTML = "";
-  
-        data.forEach((row) => {
-          const tableRow = document.createElement("tr");
-  
-          Object.entries(row).forEach(([key, value]) => {
-            const tableData = document.createElement("td");
-            if (key === "entrant_company") { // Changed to snake_case
-              tableData.textContent = value;
-            } else {
-              tableData.textContent = value || "";
-            }
-            tableRow.appendChild(tableData);
-            tableBody.appendChild(tableRow);
-          });          
-        });
-      });
-  }
   
 
   function updateSections(formType) {
+    console.log(`updateSections called for form type: ${formType}`);
     updateSectionFilter(formType);
   }
   
   function updateCategories(formType) {
+    console.log(`updateCategories called for form type: ${formType}`);
     updateCategoryFilter(formType);
   }
   
@@ -190,10 +195,27 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   
   function updateCategoryFilter(formType) {
+    const lion = document.getElementById(`lion-filter_${formType}`).value;
     const section = document.getElementById(`section-filter_${formType}`).value;
     const currentCategory = document.getElementById(`category-filter_${formType}`).value; // Store the current category value
-
-    fetch(`/get-categories?section=${section}`)
+  
+    let categoryFetchUrl = '/get-categories';
+  
+    if (lion && section) {
+      categoryFetchUrl += `?section=${section}&lion=${lion}`;
+    } else if (lion) {
+      categoryFetchUrl += `?lion=${lion}`;
+    } else if (section) {
+      categoryFetchUrl += `?section=${section}`;
+    } else {
+      // If neither lion nor section have valid values, clear the category filter
+      const categorySelect = document.getElementById(`category-filter_${formType}`);
+      categorySelect.innerHTML = `<option value="">All</option>`;
+      categorySelect.value = "";
+      return; // Don't fetch new categories
+    }
+  
+    fetch(categoryFetchUrl)
       .then((response) => response.json())
       .then((data) => {
         const categorySelect = document.getElementById(`category-filter_${formType}`);
@@ -201,22 +223,34 @@ document.addEventListener("DOMContentLoaded", function () {
         data.forEach((category) => {
           categorySelect.innerHTML += `<option value="${category}">${category}</option>`;
         });
-
+  
         // Set the selected value for the category dropdown
         categorySelect.value = currentCategory;
       });
-  }
+  }  
 
-  // Add event listeners for category filters
   ["desktop", "mobile"].forEach((formType) => {
-    document.getElementById(`category-filter_${formType}`).addEventListener("change", function () {
-      updateTable(formType);
+    document.getElementById(`lion-filter_${formType}`).addEventListener("change", function () {
+      updateSections(formType);
+      updateCategories(formType);
+    });
+  
+    // Add event listeners for section filters
+    const sectionFilter = document.getElementById(`section-filter_${formType}`);
+    const categoryFilter = document.getElementById(`category-filter_${formType}`);
+  
+    sectionFilter.addEventListener("change", function () {
+      // Reset category filter to "All"
+      categoryFilter.value = "";
+  
+      updateCategories(formType);
     });
   });
-
-
+  
+  
 });
 
 function submitTable(formType) {
   updateTable(formType);
+  closeMenu(); // Close the menu after updating the table
 }
