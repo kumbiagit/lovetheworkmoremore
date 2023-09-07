@@ -35,7 +35,8 @@ def get_data(search=None, lion=None, section=None, category=None, year=None, awa
             Hatethework.title.ilike(search),
             Hatethework.brand.ilike(search),
             Hatethework.entrant_company.ilike(search)
-        ))
+        )).order_by(Hatethework.title)
+
 
     if lion:
         query = query.filter_by(lion=lion)
@@ -3220,9 +3221,26 @@ def get_data(search=None, lion=None, section=None, category=None, year=None, awa
     return data
 
 
+# Step 1: Define the custom order
+AWARD_ORDER = ['Titanium Grand Prix', 'Titanium Lion', 'Grand Prix', 'Grand Prix for Good','Grand Prix For Good Health', 'Gold Lion', 'Silver Lion', 'Bronze Lion', 'Shortlisted', 'None']
+
+def custom_order(item):
+    try:
+        return AWARD_ORDER.index(item)
+    except ValueError:  # if the item is not in our custom list, place it at the end
+        return len(AWARD_ORDER)
+
 def get_unique_values(column):
-    unique_values = db.session.query(getattr(Hatethework, column)).distinct()
+    unique_values_query = db.session.query(getattr(Hatethework, column)).distinct()
+
+    if column == 'award':
+        unique_values = sorted(unique_values_query.all(), key=lambda x: (x[0] is None, custom_order(x[0] if x[0] is not None else '')))
+    else:
+        unique_values = sorted(unique_values_query.all(), key=lambda x: (x[0] is None, x[0]))
+
     return [value[0] for value in unique_values]
+
+
 
 @app.route('/')
 def home():
@@ -3247,11 +3265,11 @@ def get_filtered_data():
     return jsonify(data)
 
 def get_sections_for_lion(lion):
-    sections = Hatethework.query.with_entities(Hatethework.section).filter_by(lion=lion).distinct().all()
+    sections = Hatethework.query.with_entities(Hatethework.section).filter_by(lion=lion).order_by(Hatethework.section).distinct().all()
     return [sec[0].strip() for sec in sections if sec[0] is not None]
 
 def get_categories_for_section_and_lion(section, lion):
-    categories = Hatethework.query.with_entities(Hatethework.category).filter_by(section=section, lion=lion).distinct().all()
+    categories = Hatethework.query.with_entities(Hatethework.category).filter_by(section=section, lion=lion).order_by(Hatethework.category).distinct().all()
     return [cat[0].strip() for cat in categories if cat[0] is not None]
 
 @app.route('/get-categories', methods=['GET'])
@@ -3267,9 +3285,10 @@ def get_categories():
     if lion:
         query = query.filter_by(lion=lion)
 
-    categories = query.all()
+    categories = query.order_by(Hatethework.category).all()
 
     return jsonify([cat[0].strip() for cat in categories if cat[0] is not None])
+
 
 @app.route('/get-sections', methods=['GET'])
 def get_sections():
