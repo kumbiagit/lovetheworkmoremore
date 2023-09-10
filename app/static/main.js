@@ -5,8 +5,14 @@ function updateTable(formType) {
   const category = document.getElementById(`category-filter_${formType}`).value;
   const year = document.getElementById(`year-filter_${formType}`).value;
   const award = document.getElementById(`award-filter_${formType}`).value;
+  const checkboxes = document.querySelectorAll(`input[name="award-checkbox_${formType}"]:checked`);
+  let checkboxValues = [];
 
-  fetch(`/get-data?search=${encodeURIComponent(searchInput)}&lion=${encodeURIComponent(lion)}&section=${encodeURIComponent(section)}&category=${encodeURIComponent(category)}&year=${encodeURIComponent(year)}&award=${encodeURIComponent(award)}`)
+  checkboxes.forEach((checkbox) => {
+  checkboxValues.push(checkbox.value);
+  });
+
+  fetch(`/get-data?search=${encodeURIComponent(searchInput)}&lion=${encodeURIComponent(lion)}&section=${encodeURIComponent(section)}&category=${encodeURIComponent(category)}&year=${encodeURIComponent(year)}&award=${encodeURIComponent(checkboxValues.join(','))}`)
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
@@ -45,7 +51,7 @@ function updateTable(formType) {
           tableBody.appendChild(tableRow);
         });        
       }
-    });
+    });   
 }
 
 
@@ -243,9 +249,17 @@ document.addEventListener("DOMContentLoaded", function () {
       categoryFilter.value = "";
   
       updateCategories(formType);
+
+      ["desktop", "mobile"].forEach((formType) => {
+        document.querySelectorAll(`input[name="award-checkbox_${formType}"]`).forEach(checkbox => {
+            checkbox.addEventListener("change", function () {
+              updateTable(formType);
+            });
+        });
+    });
+    
     });
   });
-  
   
 });
 

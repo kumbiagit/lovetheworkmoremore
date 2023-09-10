@@ -57,12 +57,9 @@
                 {% endfor %}
               </select>
               <label for="award-filter_mobile">Award:</label>
-              <select id="award-filter_mobile" name="award">
-                <option value="">All</option>
-                {% for award in awards %}
-                <option value="{{ award }}">{{ award }}</option>
-                {% endfor %}
-              </select>
+              {% for award in awards %}
+              <input type="checkbox" id="award-filter_mobile" name="award-checkbox_mobile" value="{{ award }}"> {{ award }}<br>
+              {% endfor %}              
               <input type="submit" value="Filter" onclick="submitTable('mobile'); closeMenu();">
               <label for="search-input_mobile">Search:</label>
               <input type="text" id="search-input_mobile" placeholder="Search">
@@ -110,12 +107,9 @@
                 </div>
                 <div class="label-form">
                   <label for="award-filter_desktop">Award:</label>
-                  <select id="award-filter_desktop" name="award">
-                    <option value="">All</option>
-                    {% for award in awards %}
-                    <option value="{{ award }}">{{ award }}</option>
-                    {% endfor %}
-                  </select>
+                  {% for award in awards %}
+                  <input type="checkbox" id="award-filter_desktop" name="award-checkbox_desktop" value="{{ award }}"> {{ award }}<br>
+                  {% endfor %}                  
                 </div>
                 <div class="label-form filter-section">
                   <button id="apply-filter" class="apply-filter-btn" onclick="submitTable('desktop')">Filter</button>
@@ -180,20 +174,11 @@
     } else {
       filters.style.display = "none";
     }
-    var topnav = document.getElementById("myTopnav");
-    if (topnav.className === "topnav") {
-      topnav.className += " responsive";
-    } else {
-      topnav.className = "topnav";
-    }
   }
 
   function closeMenu() {
     var filters = document.getElementById("filters");
     filters.style.display = "none";
-
-    var topnav = document.getElementById("myTopnav");
-    topnav.className = "topnav";
   }
 
   function submitTable(formType) {
