@@ -249,17 +249,34 @@ document.addEventListener("DOMContentLoaded", function () {
       categoryFilter.value = "";
   
       updateCategories(formType);
+    });
 
-      ["desktop", "mobile"].forEach((formType) => {
-        document.querySelectorAll(`input[name="award-checkbox_${formType}"]`).forEach(checkbox => {
-            checkbox.addEventListener("change", function () {
-              updateTable(formType);
+
+    ["desktop", "mobile"].forEach((formType) => {
+      document.querySelectorAll(`input[name="award-checkbox_${formType}"]`).forEach(checkbox => {
+          checkbox.addEventListener("change", function () {
+            updateTable(formType);
             });
         });
     });
     
-    });
   });
+
+  function getSelectedAwards(formType) {
+    let awards = [];
+    let checkboxes = document.querySelectorAll(`input[name="award-checkbox_${formType}[]"]:checked`);
+    checkboxes.forEach((checkbox) => {
+        awards.push(checkbox.value);
+    });
+    return awards;
+}
+
+// When you want to get the awards for desktop form:
+let selectedDesktopAwards = getSelectedAwards('desktop');
+
+// When you want to get the awards for mobile form:
+let selectedMobileAwards = getSelectedAwards('mobile');
+
   
 });
 

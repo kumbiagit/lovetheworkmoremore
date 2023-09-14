@@ -58,7 +58,7 @@
               </select>
               <label for="award-filter_mobile">Award:</label>
               {% for award in awards %}
-              <input type="checkbox" id="award-filter_mobile" name="award-checkbox_mobile" value="{{ award }}"> {{ award }}<br>
+              <input type="checkbox" id="award-filter_mobile" name="award-checkbox_mobile[]" value="{{ award }}"> {{ award }}<br>
               {% endfor %}              
               <input type="submit" value="Filter" onclick="submitTable('mobile'); closeMenu();">
               <label for="search-input_mobile">Search:</label>
@@ -108,7 +108,7 @@
                 <div class="label-form">
                   <label for="award-filter_desktop">Award:</label>
                   {% for award in awards %}
-                  <input type="checkbox" id="award-filter_desktop" name="award-checkbox_desktop" value="{{ award }}"> {{ award }}<br>
+                  <input type="checkbox" id="award-filter_desktop" name="award-checkbox_desktop[]" value="{{ award }}"> {{ award }}<br>
                   {% endfor %}                  
                 </div>
                 <div class="label-form filter-section">

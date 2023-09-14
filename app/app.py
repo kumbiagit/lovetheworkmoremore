@@ -123,6 +123,7 @@ def get_filtered_data():
     if award_filters:
             awards_list = award_filters.split(',')
             query = query.filter(Hatethework.award.in_(awards_list))
+        
 
 
     data = get_data(search=search_filter, lion=lion_filter, section=section_filter, category=category_filter, year=year_filter, award=award_filters)
