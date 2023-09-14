@@ -46,7 +46,36 @@
               <select id="category-filter_mobile" name="category">
                 <option value="">All</option>
                 {% for category in categories %}
-                <option value="{{ category }}" {% if category == category_filter %}selected{% endif %}>{{ category }}</option>
+                <input type="checkbox" id="award-titanium-grand-prix" value="Titanium Grand Prix">
+                <label for="award-titanium-grand-prix">Titanium Grand Prix</label>
+
+                <input type="checkbox" id="award-titanium-lion" value="Titanium Lion">
+                <label for="award-titanium-lion">Titanium Lion</label>
+
+                <input type="checkbox" id="award-grand-prix" value="Grand Prix">
+                <label for="award-grand-prix">Grand Prix</label>
+
+                <input type="checkbox" id="award-grand-prix-for-good" value="Grand Prix for Good">
+                <label for="award-grand-prix-for-good">Grand Prix for Good</label>
+
+                <input type="checkbox" id="award-grand-prix-for-good-health" value="Grand Prix For Good Health">
+                <label for="award-grand-prix-for-good-health">Grand Prix For Good Health</label>
+
+                <input type="checkbox" id="award-gold-lion" value="Gold Lion">
+                <label for="award-gold-lion">Gold Lion</label>
+
+                <input type="checkbox" id="award-silver-lion" value="Silver Lion">
+                <label for="award-silver-lion">Silver Lion</label>
+
+                <input type="checkbox" id="award-bronze-lion" value="Bronze Lion">
+                <label for="award-bronze-lion">Bronze Lion</label>
+
+                <input type="checkbox" id="award-shortlisted" value="Shortlisted">
+                <label for="award-shortlisted">Shortlisted</label>
+
+                <input type="checkbox" id="award-none" value="None">
+                <label for="award-none">None</label>
+
                 {% endfor %}
               </select>
               <label for="year-filter_mobile">Year:</label>
@@ -58,7 +87,7 @@
               </select>
               <label for="award-filter_mobile">Award:</label>
               {% for award in awards %}
-              <input type="checkbox" id="award-filter_mobile" name="award-checkbox_mobile[]" value="{{ award }}"> {{ award }}<br>
+              <input type="checkbox" id="award-filter_mobileg" name="award-checkbox_mobile[]" value="{{ award }}"> {{ award }}<br>
               {% endfor %}              
               <input type="submit" value="Filter" onclick="submitTable('mobile'); closeMenu();">
               <label for="search-input_mobile">Search:</label>
@@ -108,7 +137,36 @@
                 <div class="label-form">
                   <label for="award-filter_desktop">Award:</label>
                   {% for award in awards %}
-                  <input type="checkbox" id="award-filter_desktop" name="award-checkbox_desktop[]" value="{{ award }}"> {{ award }}<br>
+                  <input type="checkbox" id="award-titanium-grand-prix" class="award_checkbox desktop" value="Titanium Grand Prix">
+                  <label for="award-titanium-grand-prix">Titanium Grand Prix</label>
+
+                  <input type="checkbox" id="award-titanium-lion" class="award_checkbox desktop" value="Titanium Lion">
+                  <label for="award-titanium-lion">Titanium Lion</label>
+
+                  <input type="checkbox" id="award-grand-prix" class="award_checkbox desktop" value="Grand Prix">
+                  <label for="award-grand-prix">Grand Prix</label>
+
+                  <input type="checkbox" id="award-grand-prix-for-good" class="award_checkbox desktop" value="Grand Prix for Good">
+                  <label for="award-grand-prix-for-good">Grand Prix for Good</label>
+
+                  <input type="checkbox" id="award-grand-prix-for-good-health" class="award_checkbox desktop" value="Grand Prix For Good Health">
+                  <label for="award-grand-prix-for-good-health">Grand Prix For Good Health</label>
+
+                  <input type="checkbox" id="award-gold-lion" class="award_checkbox desktop" value="Gold Lion">
+                  <label for="award-gold-lion">Gold Lion</label>
+
+                  <input type="checkbox" id="award-silver-lion" class="award_checkbox desktop" value="Silver Lion">
+                  <label for="award-silver-lion">Silver Lion</label>
+
+                  <input type="checkbox" id="award-bronze-lion" class="award_checkbox desktop" value="Bronze Lion">
+                  <label for="award-bronze-lion">Bronze Lion</label>
+
+                  <input type="checkbox" id="award-shortlisted" class="award_checkbox desktop" value="Shortlisted">
+                  <label for="award-shortlisted">Shortlisted</label>
+
+                  <input type="checkbox" id="award-none" class="award_checkbox desktop" value="None">
+                  <label for="award-none">None</label>
+
                   {% endfor %}                  
                 </div>
                 <div class="label-form filter-section">

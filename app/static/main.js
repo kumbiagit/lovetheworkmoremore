@@ -5,12 +5,21 @@ function updateTable(formType) {
   const category = document.getElementById(`category-filter_${formType}`).value;
   const year = document.getElementById(`year-filter_${formType}`).value;
   const award = document.getElementById(`award-filter_${formType}`).value;
-  const checkboxes = document.querySelectorAll(`input[name="award-checkbox_${formType}"]:checked`);
-  let checkboxValues = [];
-
-  checkboxes.forEach((checkbox) => {
-  checkboxValues.push(checkbox.value);
-  });
+    // Get selected award values
+  const selectedAwards = [];
+  const checkboxes = document.getElementsByClassName('award-checkbox');
+    
+   for (let i = 0; i < checkboxes.length; i++) {
+    if (checkboxes[i].checked) {
+        selectedAwards.push(checkboxes[i].value);
+      }
+    }
+    
+    // Make API request with selected awards as parameters
+    const url = `/get-data?awards=${selectedAwards.join(',')}`;
+    
+    // Rest of your code to update the table using the API response
+  }
 
   fetch(`/get-data?search=${encodeURIComponent(searchInput)}&lion=${encodeURIComponent(lion)}&section=${encodeURIComponent(section)}&category=${encodeURIComponent(category)}&year=${encodeURIComponent(year)}&award=${encodeURIComponent(checkboxValues.join(','))}`)
     .then((response) => response.json())
