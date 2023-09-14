@@ -61,7 +61,7 @@ function updateTable(formType) {
         });        
       }
     });   
-}
+
 
 
 document.addEventListener("DOMContentLoaded", function () {
